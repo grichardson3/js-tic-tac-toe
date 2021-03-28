@@ -1,37 +1,51 @@
 const resetGame = (currentTurn, turnStatus) => {
     const b = document.querySelectorAll("button");
+    const con = document.querySelector("#container");
+    const timerText = document.createElement("span");
+    let resetTimer = 3;
+
+    timerText.setAttribute("id", "timerText");
+    timerText.textContent = `Game resets in ${resetTimer}`;
+    con.appendChild(timerText);
 
     b.forEach((tile) => {
         tile.setAttribute("disabled", "");
     });
+
     setTimeout(() => {
-        b.forEach((tile) => {
-            if (currentTurn === "red") {
-                turnStatus.textContent = "BLUE's Turn";
-            } else {
-                turnStatus.textContent = "RED's Turn";
-            }
-            tile.textContent = "_";
-            tile.removeAttribute("class");
-            tile.removeAttribute("disabled");
-            console.clear();
-        });
-    }, 3000);
+        resetTimer = 2;
+        timerText.textContent = `Game resets in ${resetTimer}`;
+        setTimeout(() => {
+            resetTimer = 1;
+            timerText.textContent = `Game resets in ${resetTimer}`;
+            setTimeout(() => {
+                con.removeChild(document.querySelector("#timerText"));
+                b.forEach((tile) => {
+                    if (currentTurn === "red") {
+                        turnStatus.textContent = "BLUE's Turn";
+                    } else {
+                        turnStatus.textContent = "RED's Turn";
+                    }
+                    tile.textContent = "_";
+                    tile.removeAttribute("style");
+                    tile.removeAttribute("disabled");
+                    console.clear();
+                });
+            }, 1000);
+        }, 1000);
+    }, 1000);
 }
 
 export const gameValidation = (currentTurn, turnStatus) => {
     const b = document.querySelectorAll("button");
 
-    if ((b[0].className === "red" && b[3].className === "red" && b[6].className === "red") || (b[1].className === "red" && b[4].className === "red" && b[7].className === "red") || (b[2].className === "red" && b[5].className === "red" && b[8].className === "red") || (b[0].className === "red" && b[1].className === "red" && b[2].className === "red") || (b[3].className === "red" && b[4].className === "red" && b[5].className === "red") || (b[6].className === "red" && b[7].className === "red" && b[8].className === "red") || (b[0].className === "red" && b[4].className === "red" && b[8].className === "red") || (b[2].className === "red" && b[4].className === "red" && b[6].className === "red")) {
-        console.log("RED wins");
+    if ((b[0].style.background === "red" && b[3].style.background === "red" && b[6].style.background === "red") || (b[1].style.background === "red" && b[4].style.background === "red" && b[7].style.background === "red") || (b[2].style.background === "red" && b[5].style.background === "red" && b[8].style.background === "red") || (b[0].style.background === "red" && b[1].style.background === "red" && b[2].style.background === "red") || (b[3].style.background === "red" && b[4].style.background === "red" && b[5].style.background === "red") || (b[6].style.background === "red" && b[7].style.background === "red" && b[8].style.background === "red") || (b[0].style.background === "red" && b[4].style.background === "red" && b[8].style.background === "red") || (b[2].style.background === "red" && b[4].style.background === "red" && b[6].style.background === "red")) {
         turnStatus.textContent = "RED wins!";
         resetGame(currentTurn, turnStatus);
-    } else if ((b[0].className === "blue" && b[3].className === "blue" && b[6].className === "blue") || (b[1].className === "blue" && b[4].className === "blue" && b[7].className === "blue") || (b[2].className === "blue" && b[5].className === "blue" && b[8].className === "blue") || (b[0].className === "blue" && b[1].className === "blue" && b[2].className === "blue") || (b[3].className === "blue" && b[4].className === "blue" && b[5].className === "blue") || (b[6].className === "blue" && b[7].className === "blue" && b[8].className === "blue") || (b[0].className === "blue" && b[4].className === "blue" && b[8].className === "blue") || (b[2].className === "blue" && b[4].className === "blue" && b[6].className === "blue")) {
-        console.log("BLUE wins");
+    } else if ((b[0].style.background === "blue" && b[3].style.background === "blue" && b[6].style.background === "blue") || (b[1].style.background === "blue" && b[4].style.background === "blue" && b[7].style.background === "blue") || (b[2].style.background === "blue" && b[5].style.background === "blue" && b[8].style.background === "blue") || (b[0].style.background === "blue" && b[1].style.background === "blue" && b[2].style.background === "blue") || (b[3].style.background === "blue" && b[4].style.background === "blue" && b[5].style.background === "blue") || (b[6].style.background === "blue" && b[7].style.background === "blue" && b[8].style.background === "blue") || (b[0].style.background === "blue" && b[4].style.background === "blue" && b[8].style.background === "blue") || (b[2].style.background === "blue" && b[4].style.background === "blue" && b[6].style.background === "blue")) {
         turnStatus.textContent = "BLUE wins!";
         resetGame(currentTurn, turnStatus);
-    } else if (b[0].className && b[1].className && b[2].className && b[3].className && b[4].className && b[5].className && b[6].className && b[7].className && b[8].className) {
-        console.log("tie");
+    } else if (b[0].style.background && b[1].style.background && b[2].style.background && b[3].style.background && b[4].style.background && b[5].style.background && b[6].style.background && b[7].style.background && b[8].style.background) {
         turnStatus.textContent = "Tie game";
         resetGame(currentTurn, turnStatus);
     }

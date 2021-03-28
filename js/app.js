@@ -14,8 +14,13 @@ con.appendChild(turnStatus);
 arenaArray.forEach(() => {
     columnCount = columnCount + 1;
     const button = document.createElement("button");
+    const invalidMoveText = document.createElement("span");
     const br = document.createElement("br");
+
     button.textContent = "_";
+    invalidMoveText.textContent = "Can't go here";
+    invalidMoveText.setAttribute("id", "invalidMove");
+
     if (columnCount === 3) {
         con.appendChild(button);
         con.appendChild(br);
@@ -25,18 +30,25 @@ arenaArray.forEach(() => {
     }
     button.addEventListener("click", () => {
         if (button.style.background === "blue" || button.style.background === "red") {
+            con.appendChild(invalidMoveText);
             console.log("can't go here");
         } else {
             if (currentTurn === "blue") {
+                if (document.querySelector("#invalidMove")) {
+                    con.removeChild(document.querySelector("#invalidMove"));
+                }
                 currentTurn = "red";
                 button.textContent = "X";
                 turnStatus.textContent = "BLUE's turn";
-                button.setAttribute("class", "red");
-            } else {
+                button.setAttribute("style", "background: red; color: white;");
+            } else if (currentTurn === "red") {
+                if (document.querySelector("#invalidMove")) {
+                    con.removeChild(document.querySelector("#invalidMove"));
+                }
                 currentTurn = "blue";
                 button.textContent = "O";
                 turnStatus.textContent = "RED's turn";
-                button.setAttribute("class", "blue");
+                button.setAttribute("style", "background: blue; color: white;");
             }
         }
         gameValidation(currentTurn, turnStatus);
