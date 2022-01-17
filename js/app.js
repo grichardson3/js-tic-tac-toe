@@ -1,5 +1,13 @@
 import { gameValidation } from "./gameVal.js";
 
+const container = document.querySelector("#container");
+
+document.body.style.height = window.innerHeight + "px";
+
+window.addEventListener("resize", () => {
+    document.body.style.height = window.innerHeight + "px";
+});
+
 let arenaArray = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 let currentTurn = "blue";
 let columnCount = 0;

@@ -1,8 +1,10 @@
 body {
   width: 100%;
-  height: 600px;
   display: flex;
   overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  background: rgb(74, 60, 200);
 }
 
 #container {
@@ -10,18 +12,91 @@ body {
 }
 
 button {
-  border: 1px solid #666;
+  background: rgb(49, 40, 133);
+  font-size: 3em;
   padding: 15px;
-  width: 50px;
+  width: 100px;
+  height: 100px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: rgb(36, 29, 99);
+  transition: 0.3s ease;
 }
 
 button:focus {
   outline: 0 !important;
 }
 
-h1 {
+button:nth-child(3) {
+  border: none;
+  border-left: 3px solid white !important;
+  border-top: 3px solid white !important;
+}
+
+button:nth-child(4) {
+  border: none;
+  border-left: 3px solid white !important;
+  border-top: 3px solid white !important;
+  border-right: 3px solid white !important;
+}
+
+button:nth-child(5) {
+  border: none;
+  border-right: 3px solid white !important;
+  border-top: 3px solid white !important;
+}
+
+button:nth-child(7) {
+  border: none;
+  border-left: 3px solid white !important;
+  border-top: 3px solid white !important;
+  border-bottom: 3px solid white !important;
+}
+
+button:nth-child(8) {
+  border: 3px solid white !important;
+}
+
+button:nth-child(9) {
+  border: none;
+  border-right: 3px solid white !important;
+  border-top: 3px solid white !important;
+  border-bottom: 3px solid white !important;
+}
+
+button:nth-child(11) {
+  border: none;
+  border-left: 3px solid white !important;
+  border-bottom: 3px solid white !important;
+}
+
+button:nth-child(12) {
+  border: none;
+  border-right: 3px solid white !important;
+  border-left: 3px solid white !important;
+  border-bottom: 3px solid white !important;
+}
+
+button:nth-child(13) {
+  border: none;
+  border-right: 3px solid white !important;
+  border-bottom: 3px solid white !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
   text-align: center;
   font-size: 1.75em;
+  color: white;
 }
 
 .red,
@@ -35,4 +110,10 @@ h1 {
 
 .blue {
   background: blue;
+}
+
+#invalidMove {
+  margin-top: 20px;
+  padding: 70px;
+  width: 100%;
 }
